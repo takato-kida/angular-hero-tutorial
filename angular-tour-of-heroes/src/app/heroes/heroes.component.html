@@ -3,19 +3,10 @@
     @for(hero of heroes; track hero.id){
         <li>
             <button [class.selected]="hero === selectedHero" type = "button" (click) = "onSelect(hero)">
-                <span class = "badge" >{{hero.id}}</span>
+                <span class = "badge" >{{hero.id}}</span>:
                 <span class = "name">{{hero.name}}</span>
             </button>
         </li>
     }
 </ul>
-
-@if (selectedHero) {
-    <h2>{{selectedHero.name | uppercase}} Details</h2>
-    <div>
-        <span>id: </span>{{selectedHero.id}}</div>
-    <div>
-        <label for="hero-name">HeroName: </label>
-        <input [(ngModel)]="selectedHero.name" placeholder="name"/>
-    </div>
-}
+<app-hero-detail [hero]="selectedHero"></app-hero-detail>
