@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 /* You can add global styles to this file, and also import other style files */
 /* Application-wide Styles */
 h1 {
@@ -17,23 +21,21 @@ body, input[type="text"], button {
   color: #333;
   font-family: Cambria, Georgia, serif;
 }
-button {
+.button {
   background-color: #eee;
   border: none;
   border-radius: 4px;
-  cursor: poicd nter;
+  cursor: pointer;
   color: black;
   font-size: 1.2rem;
-  padding: 1rem;
-  margin-right: 1rem;
-  margin-bottom: 1rem;
-  margin-top: 1rem;
+  padding: 4px;
+  margin: 400pxpx;
 }
 button:hover {
   background-color: black;
   color: white;
 }
-button:disabled {
+.button:disabled {
   background-color: #eee;
   color: #aaa;
   cursor: auto;
@@ -47,4 +49,20 @@ button:disabled {
 .selected {
   background-color: #CFD8DC !important;
   color: white;
+}
+
+.nav {
+  margin: 10px 5px;
+  background-color: #eee;
+  padding: 10px;
+}
+
+.nav:hover {
+  background-color: #cfd8dc;
+  color: black;
+}
+
+.nav-list {
+  display: flex;
+  flex-direction: row;
 }
