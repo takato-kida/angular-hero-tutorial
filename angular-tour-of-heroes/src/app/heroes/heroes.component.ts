@@ -1,22 +1,30 @@
-import { Component } from '@angular/core'
+import { Component, OnInit } from '@angular/core';
 import { Hero } from '../model/hero';
-import { UpperCasePipe} from '@angular/common';
+import { HeroService } from '../service/hero.service';
 import { FormsModule } from '@angular/forms';
-import { HEROES } from '../data/mock-heroes';
-import { HeroDetailComponent } from "../hero-detail/hero-detail.component";
-
+import { HeroDetailComponent } from '../hero-detail/hero-detail.component';
+import { MessageService } from '../service/message.service';
 
 @Component({
   selector: 'app-heroes',
   standalone: true,
-  imports: [UpperCasePipe, FormsModule, HeroDetailComponent],
+  imports: [FormsModule, HeroDetailComponent],
   templateUrl: './heroes.component.html',
-  styleUrl: './heroes.component.css'
+  styleUrl: './heroes.component.css',
 })
 export class HeroesComponent {
-  heroes: Hero[] = HEROES;
   selectedHero?: Hero;
-  onSelect(hero: Hero):void{
+  heroes: Hero[] = [];
+  constructor(private heroService: HeroService, private messageService: MessageService){};
+
+  ngOnInit(): void {
+    this.getHeroes();
+  }
+    onSelect(hero: Hero): void {
     this.selectedHero = hero;
+    this.messageService.add(`HeroesComponent: Selected hero id=${hero.id}`);
+  }
+  getHeroes(): void {
+    this.heroService.getHeroes().subscribe(heroes => this.heroes = heroes);
   }
 }
